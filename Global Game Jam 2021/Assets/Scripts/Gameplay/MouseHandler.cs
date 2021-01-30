@@ -2,10 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MouseState
+{
+  Idle,
+  EnteredObject,
+  ClickedObject,
+  ExitedObject,
+  WaitingForSecondObject,
+  SecondObjectInvalid
+}
+
 public class MouseHandler : MonoBehaviour
 {
   GameObject lastClickedObject;
-  
+  List<string> itemUseTags = new List<string>();
+  float idleTime = 0.01f;
+  float idleTimer = 0.0f;
+
+  [SerializeField]
+  MouseState currentState = MouseState.Idle;
+
   public GameObject GetLastObject()
   {
     return lastClickedObject;
@@ -16,6 +32,26 @@ public class MouseHandler : MonoBehaviour
     lastClickedObject = obj;
   }
 
+  public void ChangeState(MouseState s)
+  {
+    currentState = s;
+    idleTimer = 0.0f;
+  }
+
+  public MouseState GetCurrentState()
+  {
+    return currentState;
+  }
+
+  public void SetItemTags(List<string> tags)
+  {
+    itemUseTags = tags;
+  }
+
+  public List<string> GetItemTags()
+  {
+    return itemUseTags;
+  }
 
   // Start is called before the first frame update
   void Start()
@@ -26,22 +62,15 @@ public class MouseHandler : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    //if (Input.GetMouseButtonDown(0))
-    //{
-    //  Debug.Log("Mouse handler down");
-    //  Vector3 workingPoint = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
-    //  RaycastHit2D hit = Physics2D.Raycast(workingPoint, Vector2.zero);
-    //
-    //  if (hit.collider != null)
-    //  {
-    //    Debug.Log("Target Position: " + hit.collider.gameObject.transform.position);
-    //  }
-    //  else
-    //  {
-    //    Debug.Log("Nothing clicked");
-    //  }
-    //}
+    if(currentState != MouseState.WaitingForSecondObject)
+    {
+      idleTimer += Time.deltaTime;
 
+      if (idleTime > idleTimer && currentState != MouseState.Idle)
+        currentState = MouseState.Idle;
+    }
+    
+   
   }
 }
   
