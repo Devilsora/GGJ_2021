@@ -82,11 +82,15 @@ public class PointAndClickObject : MonoBehaviour
           {
             Debug.Log("Compatable tag exists");
             //do whatever method assocaited with tag
+
+            mouse.ChangeState(MouseState.Idle);
           }
         }
       }
 
       //if not display "dont work" message
+      Debug.Log("Compatable tag doesnt exist");
+      mouse.ChangeState(MouseState.SecondObjectInvalid);
     }
     
     

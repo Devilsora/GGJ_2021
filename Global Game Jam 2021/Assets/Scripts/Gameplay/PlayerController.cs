@@ -42,12 +42,10 @@ public class PlayerController : MonoBehaviour
         
       }
 
-
-
       //check if player is clicking on an object
 
       //if not clicking an object, move in direction of where mouse is
-      if (Input.GetMouseButtonDown(0) && mouse.GetLastObject() == null)
+      if (Input.GetMouseButtonDown(0) && (mouse.GetLastObject() == null && mouse.GetCurrentState() != MouseState.WaitingForSecondObject))
       {
         //if(clicked on object)
         //{

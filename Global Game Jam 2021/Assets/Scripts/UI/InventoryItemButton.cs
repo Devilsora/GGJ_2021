@@ -26,8 +26,25 @@ public class InventoryItemButton : MonoBehaviour
 
     public void InventoryItemHandling()
     {
-      mouse.SetLastObject(gameObject);
       mouse.ChangeState(MouseState.WaitingForSecondObject);
       mouse.SetItemTags(item.tagsToInteractWith);
+    }
+
+    public void MouseEnter()
+    {
+      Debug.Log("M enter");
+      mouse.ChangeState(MouseState.EnteredObject);
+      mouse.SetLastObject(gameObject);
+    }
+
+    public void MouseExit()
+    {
+      Debug.Log("M leave");
+
+      if(mouse.GetCurrentState() != MouseState.WaitingForSecondObject)
+      {
+        mouse.SetLastObject(null);
+        mouse.ChangeState(MouseState.ExitedObject);
+      }
     }
 }
