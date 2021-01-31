@@ -16,7 +16,7 @@ public class StartHereClass : MonoBehaviour
     {
       if(Input.GetKeyDown(KeyCode.N))
       {
-        SceneManager.LoadScene("Scene3", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Scene3");
         Debug.Log("Update, N key pushed...");
       }
     }
