@@ -24,6 +24,38 @@ public class Inventory : Singleton<Inventory>
       }
     }
 
+    public int GetItemIndex(InventoryItem item)
+    {
+        for(int i = 0; i < itemList.Count; i++)
+        {
+          if (item == itemList[i])
+            return i;
+        }
+
+      return -1;
+    }
+
+    public void RemoveItem(InventoryItem item)
+    {
+        if(itemList.Contains(item))
+        {
+          //go through children and delete item in inventory list
+
+          for(int i = 0; i < transform.childCount; i++)
+          {
+            if(transform.GetChild(i).gameObject.GetComponent<InventoryItemButton>().GetItem() == item)
+            {
+              Destroy(transform.GetChild(i).gameObject);
+              break;
+            }
+          }
+
+          itemList.Remove(item);
+        }
+
+        
+    }
+
     public List<InventoryItem> GetInventory()
     {
       return itemList;

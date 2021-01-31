@@ -13,13 +13,19 @@ public class PointAndClickObject : MonoBehaviour
     public float talkable_range = -1;   //if -1, distance doesn't matter
 
     public bool canAddToInventory = false;
+    
     public InventoryItem invItem;
 
     public List<string> interactableTags;
+    public bool usesUpItemOnInteraction = true;
 
     //dialogue objects where applicable
     //regular dialogue
     //item used on
+
+    //tag indicies match up to event indicies (i.e. if battery tag is at index 1, this triggers event at index 1
+    public List<InteractableEvent> interactEvent;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +39,6 @@ public class PointAndClickObject : MonoBehaviour
 
   private void OnMouseDown()
   {
-
     //check if mouse state is trying to use an object (using item in hand)
     if (mouse.GetCurrentState() != MouseState.WaitingForSecondObject)
     {
@@ -59,7 +64,13 @@ public class PointAndClickObject : MonoBehaviour
       {
         if (dist <= talkable_range)
         {
+          Debug.Log("Start dialogue");
 
+          //add to inventory
+          if (canAddToInventory)
+          {
+            Inventory.Instance.AddToList(invItem);
+          }
         }
       }
 
@@ -84,9 +95,34 @@ public class PointAndClickObject : MonoBehaviour
           {
             foundTag = true;
             Debug.Log("Compatable tag exists");
-            //do whatever method assocaited with tag
 
             mouse.ChangeState(MouseState.Idle);
+
+            if(usesUpItemOnInteraction)
+            {
+              Inventory.Instance.RemoveItem(mouse.GetCurrentItem());
+              mouse.ClearItemInfo();
+            }
+
+
+            //do whatever method assocaited with tag
+            InteractableEvent e = interactEvent[i];
+
+            if (e.createsObject)
+            {
+              Instantiate(e.objectToCreate, transform.position, Quaternion.identity);
+            }
+
+            if (e.addsItem)
+            {
+              Inventory.Instance.AddToList(e.itemToAdd);
+            }
+
+            if (e.destroysSelf)
+            {
+              Destroy(gameObject);
+            }
+
           }
         }
       }
@@ -97,15 +133,7 @@ public class PointAndClickObject : MonoBehaviour
         Debug.Log("Compatable tag doesnt exist");
         mouse.ChangeState(MouseState.SecondObjectInvalid);
       }
-        
-
-
     }
-    
-    
-
-    
-    
   }
 
   private void OnMouseEnter()

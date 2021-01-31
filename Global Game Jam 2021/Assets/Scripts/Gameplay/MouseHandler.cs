@@ -16,6 +16,7 @@ public class MouseHandler : MonoBehaviour
 {
   GameObject lastClickedObject;
   List<string> itemUseTags = new List<string>();
+  public InventoryItem usedItem;
   float idleTime = 0.01f;
   float idleTimer = 0.0f;
 
@@ -43,9 +44,26 @@ public class MouseHandler : MonoBehaviour
     return currentState;
   }
 
+  public InventoryItem GetCurrentItem()
+  {
+    return usedItem;
+  }
+
+  public void ClearItemInfo()
+  {
+    itemUseTags = null;
+    usedItem = null;
+  }
+
   public void SetItemTags(List<string> tags)
   {
     itemUseTags = tags;
+  }
+
+  public void SetItemInfo(InventoryItem item)
+  {
+    usedItem = item;
+    itemUseTags = item.tagsToInteractWith;
   }
 
   public List<string> GetItemTags()

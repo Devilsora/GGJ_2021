@@ -29,46 +29,22 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      if(moving)
-      {
-        moveTimer += Time.deltaTime;
 
-        if(moveTimer >= moveTime)
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-          moving = false;
+          m_rb.velocity = Vector2.right.normalized * speed;
+        }
+
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+          m_rb.velocity = Vector2.left.normalized * speed;
+        }
+
+        if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
+        {
           m_rb.velocity = new Vector2(0, 0);
           m_rb.angularVelocity = 0f;
         }
-        
-      }
 
-      //check if player is clicking on an object
-
-      //if not clicking an object, move in direction of where mouse is
-      if (Input.GetMouseButtonDown(0) && (mouse.GetLastObject() == null && mouse.GetCurrentState() != MouseState.WaitingForSecondObject))
-      {
-        //if(clicked on object)
-        //{
-        //  //dont do any movement
-        //}
-
-        if(!moving)
-        {
-          Vector3 workingPoint = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
-
-          direction_vector.x = workingPoint.x;
-          direction_vector.y = 0;
-          direction_vector.z = transform.position.z;
-
-          moving = true;
-          moveTimer = 0.0f;
-
-          m_rb.velocity = direction_vector.normalized * speed;
-        }
-        
-      }
-
-      
-      
-  }
+    }
 }

@@ -19,6 +19,11 @@ public class InventoryItemButton : MonoBehaviour
         
     }
 
+    public InventoryItem GetItem()
+    {
+      return item;
+    }
+
     public void SetItem(InventoryItem i)
     {
       item = i;
@@ -27,7 +32,7 @@ public class InventoryItemButton : MonoBehaviour
     public void InventoryItemHandling()
     {
       mouse.ChangeState(MouseState.WaitingForSecondObject);
-      mouse.SetItemTags(item.tagsToInteractWith);
+      mouse.SetItemInfo(item);
     }
 
     public void MouseEnter()
