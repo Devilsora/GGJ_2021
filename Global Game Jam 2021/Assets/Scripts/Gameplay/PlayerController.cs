@@ -15,7 +15,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Vector3 direction_vector;
 
-    bool moving = false;
+    SpriteRenderer renderer;
+  
+    public Sprite standing;
+    public Sprite moving;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,7 @@ public class PlayerController : MonoBehaviour
       m_boxC = GetComponent<BoxCollider2D>();
       direction_vector = transform.position;
       mouse = FindObjectOfType<MouseHandler>();
+      renderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -33,16 +37,21 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
           m_rb.velocity = Vector2.right.normalized * speed;
+          renderer.sprite = moving;
+          renderer.flipX = false;
         }
 
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
           m_rb.velocity = Vector2.left.normalized * speed;
+          renderer.sprite = moving;
+          renderer.flipX = true;
         }
 
         if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
         {
           m_rb.velocity = new Vector2(0, 0);
+          renderer.sprite = standing;
           m_rb.angularVelocity = 0f;
         }
 
