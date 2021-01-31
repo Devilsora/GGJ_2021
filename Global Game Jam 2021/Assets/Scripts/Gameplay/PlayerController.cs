@@ -9,8 +9,6 @@ public class PlayerController : MonoBehaviour
     MouseHandler mouse;
 
     public float speed = 3.0f;
-    float moveTime = 1.0f;
-    float moveTimer = 0.0f;
     
     [SerializeField]
     Vector3 direction_vector;
