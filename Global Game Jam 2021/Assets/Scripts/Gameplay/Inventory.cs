@@ -18,7 +18,10 @@ public class Inventory : Singleton<Inventory>
     // Update is called once per frame
     void Update()
     {
-        
+      if(Input.GetKeyDown(KeyCode.I))
+      {
+        Toggle();
+      }
     }
 
     public List<InventoryItem> GetInventory()
@@ -40,5 +43,12 @@ public class Inventory : Singleton<Inventory>
       }
       
       
+    }
+
+    public void Toggle()
+    {
+      float currAlpha = gameObject.GetComponent<CanvasGroup>().alpha;
+      gameObject.GetComponent<CanvasGroup>().alpha = currAlpha == 1.0f ? 0.0f : 1.0f;
+
     }
 }
