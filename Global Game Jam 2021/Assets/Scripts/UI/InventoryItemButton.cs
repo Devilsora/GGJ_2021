@@ -16,7 +16,10 @@ public class InventoryItemButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+              if (Input.GetKeyDown("space"))
+        {
+            Debug.Log("space key was pressed");
+        } 
     }
 
     public void SetItem(InventoryItem i)

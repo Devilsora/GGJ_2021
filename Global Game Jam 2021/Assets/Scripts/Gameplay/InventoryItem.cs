@@ -19,6 +19,6 @@ public class InventoryItem : ScriptableObject
     // Update is called once per frame
     void Update()
     {
-        
+  
     }
 }
