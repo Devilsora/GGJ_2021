@@ -73,6 +73,8 @@ public class PointAndClickObject : MonoBehaviour
 
       List<string> mouseTags = mouse.GetItemTags();
 
+      bool foundTag = false;
+
       //compare tags in mouse with tags on object - see if they're compatible
       foreach(string s in interactableTags)
       {
@@ -80,6 +82,7 @@ public class PointAndClickObject : MonoBehaviour
         {
           if(s == mouseTags[i])
           {
+            foundTag = true;
             Debug.Log("Compatable tag exists");
             //do whatever method assocaited with tag
 
@@ -88,9 +91,15 @@ public class PointAndClickObject : MonoBehaviour
         }
       }
 
-      //if not display "dont work" message
-      Debug.Log("Compatable tag doesnt exist");
-      mouse.ChangeState(MouseState.SecondObjectInvalid);
+      if(foundTag == false)
+      {
+        //if not display "dont work" message
+        Debug.Log("Compatable tag doesnt exist");
+        mouse.ChangeState(MouseState.SecondObjectInvalid);
+      }
+        
+
+
     }
     
     
