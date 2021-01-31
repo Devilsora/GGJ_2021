@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: 0
   createsObject: 1
-  objectToCreate: {fileID: 226589221357164086, guid: 739d8b0615dbbd04e92bac5bf59abaca,
+  objectToCreate: {fileID: 8282402848481491307, guid: 4034d2a43cf0a504390f23cfb6b6ab18,
     type: 3}
+  createsAtPosition: 1
+  positionToCreateAt: {x: 17.28978, y: -2.5, z: 0}
   destroysSelf: 1
   addsItem: 0
   itemToAdd: {fileID: 0}

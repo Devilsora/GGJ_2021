@@ -11,8 +11,7 @@ public class Inventory : Singleton<Inventory>
   
     // Start is called before the first frame update
     void Start()
-    {
-        DontDestroyOnLoad(this.gameObject);
+    {   
     }
 
     // Update is called once per frame
@@ -73,8 +72,6 @@ public class Inventory : Singleton<Inventory>
 
         Debug.Log("Added to inventory");
       }
-      
-      
     }
 
     public void Toggle()

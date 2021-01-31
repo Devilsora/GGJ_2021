@@ -20,6 +20,9 @@ public class InteractableEvent : ScriptableObject
   //ignore areas if not applicable for event type
   public bool createsObject;
   public GameObject objectToCreate;
+
+  public bool createsAtPosition = false;
+  public Vector3 positionToCreateAt;
   
 
   public bool destroysSelf;

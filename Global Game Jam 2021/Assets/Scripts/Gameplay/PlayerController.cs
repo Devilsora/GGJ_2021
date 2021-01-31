@@ -33,6 +33,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 fixedPos = new Vector3(Mathf.Clamp(transform.position.x, -12.5f, 11f), transform.position.y, transform.position.z);
+
+        transform.position = fixedPos;
 
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {

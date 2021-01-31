@@ -139,7 +139,10 @@ public class PointAndClickObject : MonoBehaviour
 
             if (e.createsObject)
             {
-              Instantiate(e.objectToCreate, transform.position, Quaternion.identity);
+              if(!e.createsAtPosition)
+                Instantiate(e.objectToCreate, transform.position, Quaternion.identity);
+              else
+                Instantiate(e.objectToCreate, e.positionToCreateAt, Quaternion.identity);
             }
 
             if (e.addsItem)
