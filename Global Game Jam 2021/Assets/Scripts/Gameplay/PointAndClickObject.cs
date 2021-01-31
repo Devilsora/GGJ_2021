@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using DialogueEditor;
 
 public class PointAndClickObject : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PointAndClickObject : MonoBehaviour
     Color originalColor;
 
     public bool highlightsOnMouse = true;
+    public Color highlightColor = Color.yellow;
     public float talkable_range = -1;   //if -1, distance doesn't matter
 
     public bool canAddToInventory = false;
@@ -19,12 +21,21 @@ public class PointAndClickObject : MonoBehaviour
     public List<string> interactableTags;
     public bool usesUpItemOnInteraction = true;
 
-    //dialogue objects where applicable
-    //regular dialogue
-    //item used on
 
-    //tag indicies match up to event indicies (i.e. if battery tag is at index 1, this triggers event at index 1
-    public List<InteractableEvent> interactEvent;
+    public NPCConversation preItemUse;
+    public NPCConversation postItemUse;
+
+    public bool gaveItem = false;
+
+    public int interactionLimit = -1;
+    public int interactions = 0;
+
+  //dialogue objects where applicable
+  //regular dialogue
+  //item used on
+
+  //tag indicies match up to event indicies (i.e. if battery tag is at index 1, this triggers event at index 1
+  public List<InteractableEvent> interactEvent;
     
 
     // Start is called before the first frame update
@@ -50,9 +61,18 @@ public class PointAndClickObject : MonoBehaviour
       float dist = Vector2.Distance(playerPos, transform.position);
 
       //check if player is in range to trigger dialogue if applicable
+
+      if ((interactionLimit != -1 && interactions > interactionLimit))
+      {
+        return;
+      }
+      
+
       if (talkable_range == -1)
       {
         Debug.Log("Start dialogue");
+        ConversationManager.Instance.StartConversation(preItemUse);
+        interactions++;
 
         //add to inventory
         if (canAddToInventory)
@@ -65,11 +85,13 @@ public class PointAndClickObject : MonoBehaviour
         if (dist <= talkable_range)
         {
           Debug.Log("Start dialogue");
+          ConversationManager.Instance.StartConversation(preItemUse);
 
           //add to inventory
-          if (canAddToInventory)
+          if (canAddToInventory && !gaveItem)
           {
             Inventory.Instance.AddToList(invItem);
+            gaveItem = true;
           }
         }
       }
@@ -81,6 +103,11 @@ public class PointAndClickObject : MonoBehaviour
     {
       Debug.Log("Waiting for second object");
       //currently waiting for second object
+
+      if ((interactionLimit != -1 && interactions > interactionLimit))
+      {
+        return;
+      }
 
       List<string> mouseTags = mouse.GetItemTags();
 
@@ -95,6 +122,8 @@ public class PointAndClickObject : MonoBehaviour
           {
             foundTag = true;
             Debug.Log("Compatable tag exists");
+            ConversationManager.Instance.StartConversation(postItemUse);
+            interactions++;
 
             mouse.ChangeState(MouseState.Idle);
 
@@ -142,7 +171,7 @@ public class PointAndClickObject : MonoBehaviour
       mouse.ChangeState(MouseState.EnteredObject);
 
     if (highlightsOnMouse)
-      GetComponent<SpriteRenderer>().color = Color.red;
+      GetComponent<SpriteRenderer>().color = highlightColor;
     mouse.SetLastObject(gameObject);
 
   }

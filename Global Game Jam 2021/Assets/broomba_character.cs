@@ -4,7 +4,10 @@ using UnityEngine;
 using DialogueEditor;
 
 public class broomba_character : MonoBehaviour
-{  
+{
+        public NPCConversation startConversation;
+        public NPCConversation postBatteryConversation;
+
         public NPCConversation myConversation;
 
         private void OnMouseOver()
@@ -13,6 +16,11 @@ public class broomba_character : MonoBehaviour
             {
                 ConversationManager.Instance.StartConversation(myConversation);
             }
-            
         }
+
+  public void Update()
+  {
+
+
+  }
 }

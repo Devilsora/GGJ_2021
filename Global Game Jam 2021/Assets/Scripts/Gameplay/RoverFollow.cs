@@ -19,6 +19,7 @@ public class RoverFollow : MonoBehaviour
   public void Start()
   {
     renderer = GetComponent<SpriteRenderer>();
+    FollowTarget = FindObjectOfType<PlayerController>().transform;
   }
 
   public void Update()
