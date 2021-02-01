@@ -30,6 +30,8 @@ public class PointAndClickObject : MonoBehaviour
     public int interactionLimit = -1;
     public int interactions = 0;
 
+
+
   //dialogue objects where applicable
   //regular dialogue
   //item used on
