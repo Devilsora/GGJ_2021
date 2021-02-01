@@ -1314,8 +1314,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentIDCounter: 2
-  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":1}],"EditorInfo":{"isRoot":true,"xPos":120.5,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"It''s
-    a plant in a pot marked \"Sad Plant\".","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":null,"OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":125,"yPos":154},"ID":1,"ParamActions":[],"TMPFontGUID":null,"Text":"Its''
+  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":1}],"EditorInfo":{"isRoot":true,"xPos":117.5,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"It''s
+    a plant in a pot marked \"Sad Plant\".","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":null,"OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":122,"yPos":154},"ID":1,"ParamActions":[],"TMPFontGUID":null,"Text":"Its''
     smile is frozen. ","parentUIDs":[0],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":null,"OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
   saveVersion: 110
   DefaultName: 
@@ -1503,7 +1503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentIDCounter: 1
-  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[],"EditorInfo":{"isRoot":true,"xPos":76.5,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"You
+  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[],"EditorInfo":{"isRoot":true,"xPos":117.5,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"You
     found a BitCoin! Wait, isn''t this one of the items I.C.E. C.R.E.A.M. sent you
     to find?","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":null,"OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
   saveVersion: 110
@@ -2065,7 +2065,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 7a3938298c6317f4483b9de358065e41, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2493,7 +2493,7 @@ MonoBehaviour:
   interactionLimit: -1
   interactions: 0
   interactEvent:
-  - {fileID: 11400000, guid: 34f8d432f0ce1b74c9af8a95676949fd, type: 2}
+  - {fileID: 11400000, guid: ff65659ccd8c73f44b32b4bba6ca76bb, type: 2}
 --- !u!61 &1245201653
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3574,6 +3574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 2429261896501951651, guid: 618325c42586d8444b4dcf44a15ec207,
     type: 3}
+  UI: {fileID: 0}
   invSize: 10
 --- !u!225 &1716431659
 CanvasGroup:
@@ -4151,7 +4152,7 @@ MonoBehaviour:
   cleanRoom: {fileID: 173091377}
   player: {fileID: 0}
   playerRB: {fileID: 0}
-  alphaIncrease: 0.005
+  alphaIncrease: 0.0008
   spawned: 0
   rewardObject: {fileID: 981926021}
   spawnLocation: {x: 0, y: 0, z: 0}

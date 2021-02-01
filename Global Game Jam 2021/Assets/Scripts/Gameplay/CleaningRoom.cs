@@ -47,7 +47,7 @@ public class CleaningRoom : MonoBehaviour
           dirty.color = newDirty;
           
 
-          if(!spawned && newDirty.a <= 1.0f)
+          if(!spawned && newDirty.a <= 0f)
           {
             spawned = true;
             rewardObject.SetActive(true);
